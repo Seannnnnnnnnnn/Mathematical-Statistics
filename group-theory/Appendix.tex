@@ -1,0 +1,75 @@
+\section{Constructing a Non-Measurable Set}
+
+
+\newpage
+\section{$\sigma$-Algebra, Borel $\sigma$-Algebra}
+The approach taken in Stein's Real Analysis text somewhat avoids an upfront, rigorous treatment of $\sigma$-Algebras. Recall, a set $\mathcal{A}$ is a $\sigma$-Algebra if:\begin{enumerate}
+    \item $\emptyset\in\mathcal{A}$
+    \item $A\in\mathcal{A} \implies A^c\in\mathcal{A}$
+    \item if $\{A_n\}_{n=1}^{\infty}$ is a sequence of sets in $\mathcal{A}$ then $\cup_{n=1}^{\infty}A_n \in \mathcal{A}$
+    \item if $\{A_n\}_{n=1}^{\infty}$ is a sequence of sets in $\mathcal{A}$ then $\cap_{n=1}^{\infty}A_n \in \mathcal{A}$
+\end{enumerate}
+Given a collection of sets $\mathcal{S}$, we can construct the \textit{\textbf{smallest $\sigma$-Algebra containing $\mathcal{S}$}} by taking the countable intersection of all $\sigma$-Algebras contianing $\mathcal{S}$. Here, we have constructed the smallest $\sigma$-Algebra $\mathcal{A}$ in the sense that if $\mathcal{A}^\prime$ is another $\sigma$-Algebra containing $\mathcal{S}$ then $\mathcal{A}\subseteq\mathcal{A}^\prime$. \\
+\\
+An important application of this is to the \textit{\textbf{smallest $\sigma$-Algebra containing all open sets of $\mathbb{R}^d$}} which we denote by $\mathcal{B}_{\mathbb{R}^d}$ and refer to as the \textbf{\textit{Borel $\sigma$-Algebra}}. The sets that comprise $\mathcal{B}_{\mathbb{R}^d}$ are referred to as the \textit{\textbf{Borel Sets}}, and as they are open, they are therefore measurable. \\
+\\
+In fact, any set that is an element of a $\sigma$-Algebra is measurable, and is one of the many alternative definitions that some authors opt for. 
+
+\newpage
+\section{$G_\delta$ sets and $F_\sigma$ sets}
+\begin{definition}[$G_\delta$ Set] A set $E\subset\mathbb{R}^d$ is a $G_\delta$ set if it is the intersection of a countable collection of open sets. That is 
+$$E = \bigcap_{n=1}^{\infty}O_n$$
+where $O_n$ are open. 
+\end{definition}
+
+\begin{lemma}
+    If  $E\subset\mathbb{R}^d$ is bounded, then there exists a $G_\delta$ set $G$ such that
+    $$E\subseteq G \hspace{10mm} m^*(E) = m^*(G)$$
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+
+\begin{definition}[$F_\sigma$ Set] A set $E\subset\mathbb{R}^d$ is a $F_\sigma$ set if it is the union of a countable collection of closes sets. That is 
+$$E = \bigcup_{n=1}^{\infty}C_n$$
+where $C_n$ are open. 
+\end{definition}
+
+
+\newpage
+\section{Cantor Set, Cantor Function}
+The Cantor set is a useful counter example in measure theory, as it answers the following two questions: \begin{enumerate}
+    \item if $m(E) = 0 \implies E$ is countable? No. 
+    \item if $E$ is measurable $\implies$ E is a Borel Set? No.
+\end{enumerate}
+The Cantor set is is constructed by considereing the closed interval $[0,1]$ and removing the center third, giving 
+$$C_1 = [0, 1/3] \cup [2/3, 1]$$
+This process is then repeated so that $C_n$ consists of $2^n$ intervals of length $1/3^n$. The Cantor set is then given by 
+$$C = \bigcap_{n=1}^{\infty} C_n$$
+
+\newpage
+\section{Pointwise \& Uniform Convergance}
+
+There are two ways that a sequence of functions $\{f_n\}$ can converge to limit $f$. Option one, is that for some points of $x$ in the domain of $f$, $f(x)\rightarrow f$ at different speeds, we call this \textit{pointwise convergence}. On the other hand if irrespective of what choice of $x$ we consider $f_n(x)\rightarrow f(x)$ at the same rate, we say that the $f_n\rightarrow f$ \textit{uniformly} on $x$. The latter is a stronger definition of convergence for functions.  
+
+\begin{definition}[Pointwise Convergence]
+ Let $\{f_n\}_{n=1}$ converges to $f$ \textit{pointwise} if $\forall\varepsilon>0$ and $\forall x\in E$ there exists $n\in\mathbb{N}$ such that $|f_{n}(x) - f(x)|\leq\varepsilon$ if $n\geq N$. 
+\end{definition}
+
+\begin{definition}[Pointwise Convergence]
+ Let $\{f_n\}_{n=1}$ converges to $f$ \textit{pointwise} if $\forall\varepsilon>0$ there exists $n\in\mathbb{N}$ such that $|f_{n}(x) - f(x)|\leq\varepsilon$ for all $x\in E$ if $n\geq N$. 
+\end{definition}
+
+
+\newpage
+\section{Useful Set Theory Identities}
+When dealing with problems involving outer measure, it is useful to recall the following set identites: \begin{itemize}
+    \item $E_1 = (E_1 \backslash E_2) \cup (E_1 \cap E_2)$
+    \item $E_1 \cup E_2 = (E_1 \backslash E_2) \cup (E_2 \backslash E_1) \cup (E_1 \cap E_2) $
+    \item $E_1 \backslash E_2 = E_1 \cap E_2^c$
+    \item $E_1 \cup E_2 = (E_1\cap E_2)\cup(E_1 \cap E_2^c) \cup (E_1^c \cap E_2)$ 
+    \item $(E_1 \cap E_2)^c = E_1^c \cap E_2^c$
+    \item $A\cap B = A\backslash (A\backslash B)$
+    \item $A\cup B = A\cup (A^c\cap B)$
+\end{itemize}

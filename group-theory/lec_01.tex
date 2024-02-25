@@ -1,0 +1,107 @@
+\lesson{1}{28 Feb 2023}{Distributions \& Statistics}
+
+\begin{theorem}[Casella \& Berger 5.3.1]
+    Let $X_1, \dots, X_n$ be random sample from a $N(\mu, \sigma^2)$ population. Let $\Bar{X}$ and $S_n^2$ be the sample mean and sample variance. Then
+    \begin{enumerate}
+        \item $\Bar{X}_n$ and $S_n^2$ are independant random variables
+        \item $\Bar{X}_n \sim N(\mu, \sigma^2/n)$
+        \item $(n-1)s^2_n/\sigma \sim \chi^2_{n-1}$
+        \item $(\Bar{X}_n - \mu)/(S_n / \sqrt{n})\sim t_{n-1}$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
+
+
+The goal is to set up the Lebesgue measure, which we will do by first learning how to approximate lengths, areas and volumes of \textit{complicated} regions with that of rectangles and cubes.  
+\begin{definition}
+    A (closed) \textbf{rectangle} $R$ in $\mathbb{R}^d$ is a set of the form 
+    $$R = [a_1, b_1] \times \dots \times [a_d, b_d]$$
+    Note that we specifically define rectangles to be parallel to $x/y$ axis'. In the case that $(b_i - a_i) = (b_j - a_j)$ for all $i,j$ the resulting region is called a \textbf{cube}. 
+\end{definition}
+
+\begin{eg}[Rectangles]
+    Of the below regions, $R$ is considered a rectangle, whereas $Q$ is not, as it is not parallel to the axis
+\end{eg}
+    \begin{center}
+        \includegraphics[scale=0.7]{group-theory/figures/RectangleExample.png}
+    \end{center}
+
+
+\begin{definition}
+    The \textbf{volume} of a rectangle $R$ in $\mathbb{R}^d$ is given by 
+    $$|R| = (b_1 - a_1)\hdots(b_d - a_d)$$
+\end{definition}
+
+Note that we will use the terms \textit{length}, \textit{area} and \textit{volume} interchangeably here as we adjust the dimensionality of our space.
+Our plan is to approximate the volume of more complex regions with volumes of non-overlapping rectangles. To do this, we need a notion of \textit{disjointedness} between rectangles. 
+
+\begin{definition}
+    Rectangles $R, Q$ in $\mathbb{R}^d$ are \textbf{almost disjoint} if their interiors are disjoint. That is, they may only share a boundary (a set of measure 0) with one another, but do not overlap interior regions. 
+\end{definition}
+
+\begin{eg}[Disjoint, Almost Disjoint, Rectangles]
+    Of the below rectangles $P, Q$ are almost disjoint. $P, Q$ are entirely disjoint from $R$. $S,R$ are neither disjoint or almost disjoint
+\end{eg}
+    \begin{center}
+        \includegraphics[scale=0.7]{group-theory/figures/disjointrectangles.png}
+    \end{center}
+
+\begin{lemma}
+    Let $R$ be a rectangle in $\mathbb{R}^d$ and suppose $R = \cup_{k=1}^{n}R_k$ where $\{R_k\}_{k=1}^{N}$ are pairwise almost disjoint. Then
+    $$|R| = \sum_{k=1}^{N}|R_k|$$
+\end{lemma}
+
+\begin{proof}
+    Assume that $R$ is as above, extend the partitions of each $R_k$ so that a grid is formed as below \\
+    \\
+    This results in smaller rectangles $\{\Tilde{R}_1, \Tilde{R}_m\}$ and partition $J_1, \dots J_N$ of $1, \dots, m$ such that 
+    $$R = \bigcup_{j=1}^{M}\Tilde{R}_j \hspace{10mm} R_k = \bigcup_{j\in j_k}\Tilde{R}_j$$
+\end{proof}
+    \begin{center}
+        \includegraphics[scale=0.9]{group-theory/figures/Partitions.png}
+    \end{center}
+
+
+\begin{lemma}
+    Similar to our previous lemma, though let $R$ be a rectangle in $\mathbb{R}^d$ and suppose $R \subseteq \cup_{k=1}^{n}R_k$ where $\{R_k\}_{k=1}^{N}$ are pairwise almost disjoint. Then
+    $$|R| \leq \sum_{k=1}^{N}|R_k|$$
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+We now proceed to give a description of the structure of open sets in
+terms of cubes. We begin with the case of $d=1$ for $\mathbb{R}$
+
+\begin{theorem}
+    Every open subset $U\subset\mathbb{R}$ can be uniquely written as a countable union of dijoint open intervals of $\mathbb{R}$    
+\end{theorem}
+\begin{proof}
+    The \textit{trick} is to identify that since $U$ is an open set, for each $x\in  U$ there exists a $\delta>0$ such that $(x-\delta, x+\delta)\subset U$. Let $I_x$ be the largest such interval $I_x = (a_x, b_x)$ for a given $x$ where
+    $$a_x = \inf\{t\in(-\infty, x) : (t, x]\in U\} \hspace{10mm} b_x = \sup\{t\in[x,\infty): [x, t)\subset U\}$$
+    One can readily verify that 
+    $$U = \bigcup_{x\in U}I_x$$
+    We now prove each component of the theorem. \begin{itemize}
+        \item \textit{Disjointness}. Suppose there is a $x,y$ such that $I_x = I_y$. As $I_x$ are open intervals, the union $I_x \cup I_y \subseteq U$ is also an open interval. We must have $x\in I_x \cup I_y \subseteq U$ and $y\inI_x \cup I_y \subseteq U$. However, we defined each $I_x$ as the \textit{maximal} set, so we must have $I_x = I_x \cup I_y \subseteq U = I_y$ 
+        
+        % the last line here makes no sense, like how can you equate them like that?
+        \item \textit{Countably}. The \textit{trick} is to write our union in terms of a subset of $\mathbb{Q}$. For each $I_x$ we must have atleast one $q\in\mathbb{Q}$ such that $q\in I_x$. Moreover, each $q\in U\cap\mathbb{Q}$ must be contained in it's own interval, namely $I_q$. Hence $\{I_x\}_{x\in U} = \{I_q\}_{q\in U\cap\mathbb{Q}}$.
+
+        \item \textit{Uniqueness}.
+    \end{itemize}
+    
+\end{proof}
+\begin{remark}
+This theorem allows us to express any $U\subset\mathbb{R}$ as the countable union of disjoint open intervals $U = \cup_{j=1}^{\infty} I_j$. This then allows us to naturally define a notion of \textit{length} in $\mathbb{R}$ as 
+$$\text{length}(U) = \sum_{j=1}^{\infty}|I_j|$$
+\end{remark}
+
+\begin{theorem}
+    Every open subset $U$ of $\mathbb{R}^d$ can be written as the union of countable collection $\mathcal{Q}$ of pairwise almost disjoint (not necessarily unique) closed cubes
+    $$U = \cup_{Q\in\mathcal{Q}}\mathcal{Q}$$
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
